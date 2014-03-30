@@ -16,11 +16,17 @@ namespace Terry.Project.User
             _Complex = new Regulus.Remoting.Ghost.Native.Agent();
             _Updater = new Regulus.Utility.Updater();
         }
+
+    
+
         Regulus.Remoting.Ghost.IProviderNotice<GameCore.IIntoGame> IUser.IntoGameProvider
         {
             get { return _Agent.QueryProvider<GameCore.IIntoGame>(); }
         }
-
+        Regulus.Remoting.Ghost.IProviderNotice<GameCore.ILogin> IUser.LoginProvider
+        {
+            get { return _Agent.QueryProvider<GameCore.ILogin>(); }
+        }
         bool Regulus.Utility.IUpdatable.Update()
         {
             _Updater.Update();

@@ -24,4 +24,11 @@ namespace Terry.Project.GameCore
             _Provider.Unbind<IIntoGame>(_Intogame);
         }
     }
+
+
+    
+
+    
+
+
 }

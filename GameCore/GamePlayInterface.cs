@@ -7,7 +7,13 @@ namespace Terry.Project.GameCore
 {
     public interface IIntoGame
     {
-        void SayHello();
         Regulus.Remoting.Value<int> Add(int x, int y);
+
+        Regulus.Remoting.Value<String> Welcome();
+    }
+
+    public interface ILogin
+    {
+        Regulus.Remoting.Value<bool> Login(string id, string pw);
     }
 }

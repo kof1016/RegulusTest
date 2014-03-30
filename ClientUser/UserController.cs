@@ -14,35 +14,6 @@ namespace Terry.Project.User
         private String _Name;
         event Regulus.Game.ConsoleFramework<IUser>.OnSpawnUser _UserSpawnEvent;
         private Regulus.Utility.Updater _Updater;
-        
-
-        public UserController(IUser user)
-        {
-            _RemotingUser = user;
-            _Updater = new Regulus.Utility.Updater();
-        }
-
-        public UserController(Regulus.Utility.Console.IViewer viewer, Regulus.Utility.Command command, IUser remotingUser) :this(remotingUser)
-        {
-            // TODO: Complete member initialization
-            this._Viewer = viewer;
-            this._Command = command;
-
-
-            
-            //_Command.RemotingRegister<int, int, int>("Add", gpi.Add, (sum) => { view.WriteLine("=" + sum.ToString()); });
-
-        }
-        
-        void Regulus.Game.ConsoleFramework<IUser>.IController.Look()
-        {
-            _RemotingUser.IntoGameProvider.Supply += (gpi) => 
-            { 
-                _Command.Register("say", gpi.SayHello);
-                _Command.RemotingRegister<int, int, int>("Add", gpi.Add, (sum) => { _Viewer.WriteLine("=" + sum.ToString()); });
-            };
-        }
-        
 
         string Regulus.Game.ConsoleFramework<IUser>.IController.Name
         {
@@ -55,10 +26,49 @@ namespace Terry.Project.User
                 _Name = value;
             }
         }
+        
 
+        public UserController(IUser user)
+        {
+            _RemotingUser = user;
+            _Updater = new Regulus.Utility.Updater();
+        }
+
+        public UserController(Regulus.Utility.Console.IViewer viewer, Regulus.Utility.Command command, IUser remotingUser) 
+            :this(remotingUser)
+        {
+            this._Viewer = viewer;
+            this._Command = command;
+        }
+        
+        void Regulus.Game.ConsoleFramework<IUser>.IController.Look()
+        {
+            try
+            {
+                _RemotingUser.IntoGameProvider.Supply += (gpi) =>
+                {
+                    _Command.RemotingRegister<int, int, int>("Add", gpi.Add, (sum) => { _Viewer.WriteLine("=" + sum.ToString()); });
+                    _Command.RemotingRegister<String>("IntoServer", gpi.Welcome, (messgae) => { _Viewer.WriteLine(messgae); });
+                    
+                };
+
+                _RemotingUser.LoginProvider.Supply += (gpi) =>
+                {
+                    _Command.RemotingRegister<string, string, bool>("Login", gpi.Login, (var) => { if (var) _Viewer.WriteLine("登錄成功"); });
+                };
+            }
+            catch(SystemException se)
+            {
+
+            }
+            
+        }
+        
         void Regulus.Game.ConsoleFramework<IUser>.IController.NotLook()
         {
-            
+            _Viewer.WriteLine("切換user" + _Name);
+            //移除所有命令
+            //_UserCommand.Unregister(_User);
         }
 
         event Regulus.Game.ConsoleFramework<IUser>.OnSpawnUser Regulus.Game.ConsoleFramework<IUser>.IController.UserSpawnEvent
