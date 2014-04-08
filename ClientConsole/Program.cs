@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using Regulus.Extension;
 namespace ClientConsole
 {
@@ -12,7 +11,7 @@ namespace ClientConsole
         {
             var view = new Regulus.Utility.ConsoleViewer() as Regulus.Utility.Console.IViewer;
             var input = new Regulus.Utility.ConsoleInput(view);
-            var application = new Terry.Project.User.ClientUserFramework(view, input);
+            var application = new Terry.Project.User.ClientUserFramework(view, input);            
 
             Regulus.Utility.Updater updater = new Regulus.Utility.Updater();
             updater.Add(application);
@@ -20,6 +19,8 @@ namespace ClientConsole
             
             bool exit = false;
             application.Command.Register("quit", () => { exit = true; });
+            application.Command.Register("sp", () => { application.Command.Run("spawnCONTROLLER" , new string[]{"1"}); });
+            application.Command.Register("sl", () => { application.Command.Run("selectCONTROLLER", new string[] { "1" }); });
             
             while(exit == false)
             {

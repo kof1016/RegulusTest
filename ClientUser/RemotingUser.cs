@@ -33,17 +33,32 @@ namespace Terry.Project.User
             return true;
         }
 
+        void Launch()
+        {
+            var val = _Complex.Connect("127.0.0.1", 12345);
+            val.OnValue += _Result;
+
+            _Updater.Add(_Complex);
+        }
+
+        private void _Result(bool result)
+        {
+            if (result == false)
+            {
+                var val = _Complex.Connect("127.0.0.1", 12345);
+                val.OnValue += _Result;
+                System.Diagnostics.Debug.WriteLine("link FAIL!");
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("link success!");
+            }
+        }
+
         void Regulus.Framework.ILaunched.Launch()
         {
-            var val = _Complex.Connect("127.0.0.1" , 12345);
-            val.OnValue += (result) => 
-            {
-                if(result == false)
-                {
-                    _Complex.Connect("127.0.0.1" , 12345);
-                }
-            }; 
-            _Updater.Add(_Complex);
+            Launch();
+            
         }
 
         void Regulus.Framework.ILaunched.Shutdown()

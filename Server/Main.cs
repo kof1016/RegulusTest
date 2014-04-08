@@ -8,6 +8,7 @@ namespace Terry.Project.Server
     class Main : Regulus.Game.ICore
     {
         Terry.Project.GameCore.UserBodyCreator _UserBodyCreator;
+        //Regulus.Utility.Updater _Updater;
 
         public Main()
         {
