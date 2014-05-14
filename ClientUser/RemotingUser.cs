@@ -12,16 +12,22 @@ namespace Terry.Project.User
         private Regulus.Utility.Updater _Updater;
 
         public RemotingUser()
-        { 
+        {
             _Complex = new Regulus.Remoting.Ghost.Native.Agent();
             _Updater = new Regulus.Utility.Updater();
+            //Test(null);
+            //System.Reflection.Assembly.LoadFrom("GameCore.dll");
         }
 
-    
+        //C#的bug
+        //void Test(GameCore.TestData data)
+        //{ 
+            
+        //}
 
-        Regulus.Remoting.Ghost.IProviderNotice<GameCore.IIntoGame> IUser.IntoGameProvider
+        Regulus.Remoting.Ghost.IProviderNotice<GameCore.IInGame> IUser.IntoGameProvider
         {
-            get { return _Agent.QueryProvider<GameCore.IIntoGame>(); }
+            get { return _Agent.QueryProvider<GameCore.IInGame>(); }
         }
         Regulus.Remoting.Ghost.IProviderNotice<GameCore.ILogin> IUser.LoginProvider
         {

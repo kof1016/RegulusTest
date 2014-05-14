@@ -7,21 +7,22 @@ namespace Terry.Project.Server
 {
     class Main : Regulus.Game.ICore
     {
-        Terry.Project.GameCore.UserBodyCreator _UserBodyCreator;
+        Terry.Project.GameCore.UserManager _UserManager;
         //Regulus.Utility.Updater _Updater;
 
         public Main()
         {
-            _UserBodyCreator = new GameCore.UserBodyCreator();
+            _UserManager = new GameCore.UserManager();
         }
 
         void Regulus.Game.ICore.ObtainController(Regulus.Remoting.ISoulBinder binder)
         {
-            _UserBodyCreator.CreateUserBody(binder);
+            _UserManager.CreateUserInstance(binder);
         }
 
         bool Regulus.Utility.IUpdatable.Update()
         {
+            _UserManager.Update();
             return true;
         }
 

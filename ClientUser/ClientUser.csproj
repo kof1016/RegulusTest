@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Terry.Project.ClientUser</RootNamespace>
     <AssemblyName>User</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -53,9 +53,6 @@
     <Reference Include="RemotingNativeGhost">
       <HintPath>..\GameLibrary\RemotingNativeGhost.dll</HintPath>
     </Reference>
-    <Reference Include="Server">
-      <HintPath>..\GameLibrary\Server.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -77,7 +74,6 @@
     <ProjectReference Include="..\GameCore\GameCore.csproj">
       <Project>{cb2a6c54-498e-4b39-9ea9-fbfa904aff59}</Project>
       <Name>GameCore</Name>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

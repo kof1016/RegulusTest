@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ClientConsole</RootNamespace>
     <AssemblyName>ClientConsole</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -69,11 +69,6 @@
     <ProjectReference Include="..\ClientUser\ClientUser.csproj">
       <Project>{034f9780-a271-4a63-8159-c0f9efc88fc1}</Project>
       <Name>ClientUser</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\GameCore\GameCore.csproj">
-      <Project>{cb2a6c54-498e-4b39-9ea9-fbfa904aff59}</Project>
-      <Name>GameCore</Name>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

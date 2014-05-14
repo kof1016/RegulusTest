@@ -43,24 +43,22 @@ namespace Terry.Project.User
         
         void Regulus.Game.ConsoleFramework<IUser>.IController.Look()
         {
-            try
+            _RemotingUser.IntoGameProvider.Supply += (gpi) =>
             {
-                _RemotingUser.IntoGameProvider.Supply += (gpi) =>
-                {
-                    _Command.RemotingRegister<int, int, int>("Add", gpi.Add, (sum) => { _Viewer.WriteLine("=" + sum.ToString()); });
-                    _Command.RemotingRegister<String>("IntoServer", gpi.Welcome, (messgae) => { _Viewer.WriteLine(messgae); });
+                _Command.RemotingRegister<int, int, int>("Add", gpi.Add, (sum) => { _Viewer.WriteLine("=" + sum.ToString()); });
+                _Command.RemotingRegister<String>("IntoServer", gpi.Welcome, (messgae) => { _Viewer.WriteLine(messgae); });
+                _Command.Register("back", gpi.BackLoginState);
                     
-                };
+            };
 
-                _RemotingUser.LoginProvider.Supply += (gpi) =>
-                {
-                    _Command.RemotingRegister<string, string, bool>("Login", gpi.Login, (var) => { if (var) _Viewer.WriteLine("登錄成功"); });
-                };
-            }
-            catch(SystemException se)
+            _RemotingUser.LoginProvider.Supply += (gpi) =>
             {
-
-            }
+                _Command.RemotingRegister<string, string, bool>("Login", gpi.Login, (var) => 
+                { 
+                    if (var) _Viewer.WriteLine("登錄成功"); 
+                });
+            };
+            
             
         }
         

@@ -9,6 +9,7 @@ namespace ClientConsole
     {
         static void Main(string[] args)
         {
+            System.Reflection.Assembly.LoadFrom("GameCore.dll");
             var view = new Regulus.Utility.ConsoleViewer() as Regulus.Utility.Console.IViewer;
             var input = new Regulus.Utility.ConsoleInput(view);
             var application = new Terry.Project.User.ClientUserFramework(view, input);            
