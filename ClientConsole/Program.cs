@@ -20,8 +20,8 @@ namespace ClientConsole
             
             bool exit = false;
             application.Command.Register("quit", () => { exit = true; });
-            application.Command.Register("sp", () => { application.Command.Run("spawnCONTROLLER" , new string[]{"1"}); });
-            application.Command.Register("sl", () => { application.Command.Run("selectCONTROLLER", new string[] { "1" }); });
+            application.Command.Register("sp", () => { application.Command.Run("spawncontroller" , new string[]{"1"}); });
+            application.Command.Register("sl", () => { application.Command.Run("selectcontroller", new string[] { "1" }); });
             
             while(exit == false)
             {
