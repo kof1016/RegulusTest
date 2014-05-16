@@ -12,8 +12,18 @@ namespace Terry.Project.GameCore
         public User(Regulus.Remoting.ISoulBinder provider)
         {
             StageMachine = new Regulus.Game.StageMachine();
+            //_ToConnectState(provider);
             _ToLoginState(provider);
         }
+
+        //private void _ToConnectState(Regulus.Remoting.ISoulBinder provider)
+        //{
+            //ConnectStates connectState = new ConnectStates(provider);
+            //StageMachine.Push(connectState);
+
+            //connectState.OnDoneEvent += () => { _ToLoginState(provider); };
+        //}
+
 
         private void _ToLoginState(Regulus.Remoting.ISoulBinder provider)
         {

@@ -43,6 +43,25 @@ namespace Terry.Project.User
         
         void Regulus.Game.ConsoleFramework<IUser>.IController.Look()
         {
+            _RemotingUser.ConnectProvider.Supply += (gpi) =>
+            {
+                _Command.RemotingRegister<string, int, bool>("connect", gpi.Connect, (var) =>
+                {
+                    if(var)
+                        _Viewer.WriteLine("連線成功");
+                    else
+                        _Viewer.WriteLine("連線失敗");
+                });
+            };
+
+            _RemotingUser.LoginProvider.Supply += (gpi) =>
+            {
+                _Command.RemotingRegister<string, string, bool>("Login", gpi.Login, (var) =>
+                {
+                    if (var) _Viewer.WriteLine("登錄成功");
+                });
+            };
+
             _RemotingUser.IntoGameProvider.Supply += (gpi) =>
             {
                 _Command.RemotingRegister<int, int, int>("Add", gpi.Add, (sum) => { _Viewer.WriteLine("=" + sum.ToString()); });
@@ -50,16 +69,6 @@ namespace Terry.Project.User
                 _Command.Register("back", gpi.BackLoginState);
                     
             };
-
-            _RemotingUser.LoginProvider.Supply += (gpi) =>
-            {
-                _Command.RemotingRegister<string, string, bool>("Login", gpi.Login, (var) => 
-                { 
-                    if (var) _Viewer.WriteLine("登錄成功"); 
-                });
-            };
-            
-            
         }
         
         void Regulus.Game.ConsoleFramework<IUser>.IController.NotLook()

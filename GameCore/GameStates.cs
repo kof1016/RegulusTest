@@ -7,6 +7,44 @@ using System.Text;
 
 namespace Terry.Project.GameCore
 {
+
+    //class ConnectStates : Regulus.Game.IStage, IConnect
+    //{
+    //    public delegate void DoneEvent();
+    //    public event DoneEvent OnDoneEvent;
+
+    //    Regulus.Remoting.ISoulBinder _Provider;
+
+    //    public ConnectStates(Regulus.Remoting.ISoulBinder provider)
+    //    {
+    //        _Provider = provider;
+    //    }
+
+    //    void Regulus.Game.IStage.Enter()
+    //    {
+    //        _Provider.Bind<IConnect>(this);
+    //    }
+
+    //    void Regulus.Game.IStage.Leave()
+    //    {
+    //        _Provider.Unbind<IConnect>(this);
+    //    }
+
+    //    void Regulus.Game.IStage.Update()
+    //    {
+    //    }
+
+    //    Regulus.Remoting.Value<bool> IConnect.Connect(string ip, int port)
+    //    {
+    //        if (ip == "127.0.0.1" && port == 12345)
+    //        {
+    //            OnDoneEvent();
+    //            return true;
+    //        }
+    //        return false;
+    //    }
+    //}
+
     class LoginStates : Regulus.Game.IStage , ILogin 
     {
         public delegate void DoneEvent();
